@@ -4,3 +4,6 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 @st.cache
+
+def load_data():
+    

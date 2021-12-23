@@ -2,3 +2,7 @@ streamlit
 pandas
 matplotlib.pyplot
 plotly.express
+seaborn
+numpy
+plotly.graph_objects
+plotly.offline
