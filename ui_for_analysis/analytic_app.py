@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from plotly.offline import iplot
 
-
-
 @st.cache
 def load_data(op):
     if op=='dropout':
@@ -27,7 +25,7 @@ def load_data(op):
         return girls_toilet
 
 st.title("School Management statistics analysis")
-st.subheader("This is a streamlit dashboard to analyze school management statistics")
+st.header("This is a streamlit dashboard to analyze school management statistics")
 
 def dropout_analysis():   
     df=load_data('dropout')
@@ -266,7 +264,20 @@ def girs_toilet():
         fig=girls_melt.groupby(['State_UT'])['toilet'].mean().sort_values()
         st.bar_chart(fig,height=500, use_container_width=False)
 
-options = ['Dropout','Enrollment','Schools with Computer','Boys Toilet facility','Girls Toilet facility']
+def conclude():
+    ops=['Dropout Analysis','Enrollment Analysis','Computer facility', 'Toilet Facility']
+    sel=st.selectbox('Select',ops)
+    if sel == ops[0]:
+        st.subheader('From the bar chart we can conclude that maximum students dropout in Odisha during their secondary education in all three years.')
+    elif sel == ops[1]:
+        st.subheader('From the analysis, we can conclude that the number of girls that enroll during higher secondary is way less than the number of boys.')
+    elif sel == ops[2]:
+        st.subheader('We can conclude that Lakswadeep has the highest computer facility with Bihar being the state with least computers facility.')
+    elif sel == ops[3]:
+        st.subheader('From the above analysis we can see that secondary education schools have the least toilet facilities for boys as well as girls.')
+        st.subheader('We can see that Mizoram has the least toilet facilities while Karnataka has the most toilet facilities.')
+
+options = ['Dropout','Enrollment','Schools with Computer','Boys Toilet facility','Girls Toilet facility','Conclusion']
 choice = st.sidebar.radio("Select any option", options)
 if choice == options[0]:
     dropout_analysis()
@@ -278,3 +289,5 @@ elif choice == options[3]:
     boys_toilet()
 elif choice == options[4]:
     girs_toilet()
+elif choice == options[5]:
+    conclude()
